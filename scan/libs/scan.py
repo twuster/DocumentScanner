@@ -39,19 +39,29 @@ cv2.destroyAllWindows()
 # largest ones, and initialize the screen contour
 (cnts, _) = cv2.findContours(edged.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 cnts = sorted(cnts, key=cv2.contourArea, reverse=True)[:5]
+screenCnt = None
 
 # loop over the contours
 for c in cnts:
     # approximate contours
     peri = cv2.arcLength(c, True)
     approx = cv2.approxPolyDP(c, 0.02 * peri, True)
-    import pdb; pdb.set_trace()
 
     # if our approximated contour has four points, then we
     # can assume that we have found our screen
     if len(approx) == 4:
         screenCnt = approx
         break
+
+# Check if we found a 4 point contour. If not, we create our own bounding box
+# with the largest contour
+if screenCnt is None:
+    height, width, channels = image.shape
+    imageBounds = np.array([[1, 1], [width, 1], [width, height], [1, height]])
+    screenCnt = imutils.get_bounding_box(imageBounds)
+
+# import pdb; pdb.set_trace()
+
 
 # show the contour (outline) of the piece of paper
 print "STEP 2: Find contours of paper"
