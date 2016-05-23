@@ -61,18 +61,16 @@ def resize(image, width=None, height=None, inter=cv2.INTER_AREA):
     return resized
 
 
-"""
-Returns top-left, top-right, bottom-right, bottom-left coordinates of the bounding box
-or a list of points
-"""
 def get_bounding_box(points):
+    """
+    Returns top-left, top-right, bottom-right, bottom-left coordinates of the bounding box
+    of a list of points
+    """
     top = 0.0
     right = 0.0
     bottom = 0.0
     left = 0.0
     for i, point in enumerate(points):
-        # import pdb;pdb.set_trace()
-        # point = point[0]
         if i == 0:
             left = point[0]
             right = point[0]
