@@ -1,4 +1,7 @@
-# Import the necessary packages
+"""
+Utility methods for manipulating images
+"""
+
 import numpy as np
 import cv2
 
