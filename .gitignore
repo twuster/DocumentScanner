@@ -63,8 +63,11 @@ docs/_build/
 # PyBuilder
 target/
 
-#Ipython Notebook
+# Ipython Notebook
 .ipynb_checkpoints
 
-#Pycharm .idea files
+# Pycharm .idea files
 .idea/
+
+# Secrets file
+secrets.py
